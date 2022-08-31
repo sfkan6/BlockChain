@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mine</title>
+    <link rel="shortcut icon" href="{{ url_for('static', path='../static/images/android-chrome-192x192.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/mine_style.css') }}">
+</head>
+<body>
+    <header>
+        <h1 class="name_page">Block mining</h1>
+    </header>
+    <main>
+        <div class="container">
+            <p>#Number of blocks</p>
+            <div class="length_block">
+                <p class="len">{{len_blocks}}</p>
+            </div>
+            <div>
+                <form method="post" action="/mine/mining">
+                    <p><input class="name_text" name="name_node" maxlength="100" value="" placeholder="username"></p>
+                    <p><textarea class="date_text" name="data_from_block" maxlength="1000" required placeholder="data"></textarea></p>
+                    <input class="button_mine" type="submit" value="Mine" name="mine_block">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

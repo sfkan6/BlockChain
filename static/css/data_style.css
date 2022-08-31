@@ -1,0 +1,43 @@
+body{
+    font-family: Segoe UI,Helvetica,Arial,sans-serif;
+	background-image: url(../images/8.jpg);
+	background-size: 100%;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	font-size:1.1rem;
+}
+
+header {
+    height: 100px;
+}
+
+.name_page{
+    color: white;
+    padding-top: 1.5rem;;
+    text-align:center;
+}
+
+main{
+    height:auto;
+
+}
+
+.container{
+    min-height: 25rem;
+    width: 70%;
+    margin:auto;
+    padding:5%;
+    padding-top: 2%;
+    border-radius: 20px 20px 20px 20px;
+    background-color: white;
+}
+
+hr{
+    border:0;
+    border-top: 1px solid #e7eaf3;
+}
+
+.data{
+	font-size:1.3rem;
+    white-space: pre-line;
+}
