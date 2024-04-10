@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% block title %}{% endblock %}
+  <link rel="shortcut icon" href="{{ url_for('static', path='../static/images/favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/index.css') }}">
+  {% block links %}{% endblock %}
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class=""deadLink><button id="startButton">Start</button></a>
+      <a href="/"><button>Chain</button></a>
+      <a href="/transaction"><button>Create Transaction</button></a>
+      <a href="/wallet/create"><button>Create Wallet</button></a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <div class="container_header">
+        {% block container_header %}{% endblock %}
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</body>
+  {% block javascript %}
+    <script src="{{ url_for('static', path='../static/js/start-button.js') }}"></script>
+  {% endblock %}
+</html>

@@ -1,0 +1,87 @@
+{% extends "index.html" %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/viewing_block.css') }}">
+{% endblock %}
+
+{% block title %}
+Block
+{% endblock %}
+
+{% block container_header %}
+<div class="container_header">
+  Block is {{ block_index }}
+</div>
+{% endblock %}
+        
+{% block content %}
+
+<div class="menu">
+  <button id="InfoButton" class="activeMode">Info</button>
+  <button id="TransactionsButton">Transactions</button>
+</div>
+<div id="header">
+  <hr class="line">
+  <div class="block_field">
+    <div class="col_left">Index</div>
+    <div class="col_right">{{block.header.index}}</div>
+  </div>
+  <hr class="line">
+  <div class="block_field">
+    <div class="col_left">Time</div>
+    <div class="col_right">{{block.header.timestamp}}</div>
+  </div>
+  <hr class="line">
+  <div class="block_field">
+    <div class="col_left">Hash</div>
+    <div class="col_right">{{block.hash}}</div>
+  </div>
+  <hr class="line">
+  <div class="block_field">
+    <div class="col_left">Previous Hash</div>
+    <div class="col_right">{{block.header.prev_hash}}</div>
+  </div>
+  <hr class="line">
+  <div class="block_field">
+    <div class="col_left">Nonce</div>
+    <div class="col_right">{{block.header.nonce}}</div>
+  </div>
+  <hr class="line">
+</div>
+<div id="transactions" class="hidden">
+  <table>
+  <!-- <colgroup> -->
+  <!--    <col span="1" style="width: 13%;"> -->
+  <!--    <col span="1" style="width: 32%;"> -->
+  <!--    <col span="1" style="width: 30%;"> -->
+  <!--    <col span="1" style="width: 25%;"> -->
+  <!-- </colgroup> -->
+  <thead>
+    <tr>
+      <th>Timestamp</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      <th>Message</th>
+      <th>Transaction Hash</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for transaction in block.transactions %}
+      <tr>
+        <td>{{ transaction.timestamp}}</td>
+        <td>{{ transaction.sender[:8] + "..." + transaction.sender[-8:] }}</td>
+        <td>{{ transaction.recipient [:8] + "..." + transaction.recipient[-8:] }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td class="message">{{ transaction.message }}</td>
+        <td>{{ transaction.transaction_hash[:8] + "..." + transaction.transaction_hash[-8:] }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% block javascript %}
+  <script src="{{ url_for('static', path='../static/js/block-menu.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/creating_transaction.css') }}">
+{% endblock %}
+
+{% block title %}
+Block
+{% endblock %}
+
+{% block container_header %}
+Creating block
+{% endblock %}
+        
+{% block content %}
+
+<div class="length_block">
+    <p class="len">{{len_blocks}}</p>
+</div>
+<div>
+  <form method="post" action="/transaction/create" id="myForm">
+  <!-- <form method="post" onsubmit="validateMyForm();" id="myForm"> -->
+
+    <p><input name="sender" value="" required placeholder="Sender (Public key)"></p>
+    <p><input name="recipient" value="" required placeholder="Recipient"></p>
+    <p><input name="amount" value="" required placeholder="Amount"></p>
+    <p><input name="message" value="" required placeholder="Message"></p>
+    <p><input name="private_key" value="" required placeholder="Private Key"></p>
+    <!-- <div class="transactionHash "> -->
+    <!--   <p><input name="transaction_hash" value="" placeholder="Transaction Hash"></p> -->
+    <!-- </div> -->
+
+    <button type="submit" id="formButton">Create</button>
+  </form>
+</div>
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elliptic/6.5.5/elliptic.js" integrity="sha512-dWhNu2H22cFc7FZr7LG+dayvwLUJEgQWTKFlHNCGLjxYA3sXM+Mc/b9Q4t+/cJ0A7P6RuD/ZK1CEWoeXZhvsdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url_for('static', path='../static/js/creating-transaction.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

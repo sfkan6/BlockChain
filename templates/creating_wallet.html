@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/creating_wallet.css') }}">
+{% endblock %}
+
+{% block title %}
+Block
+{% endblock %}
+
+{% block container_header %}
+<div class="container_header">
+  Creating Wallet
+</div>
+{% endblock %}
+        
+{% block content %}
+<p>Public key:</p>
+<div class="key">
+  {{ public_key }}
+</div>
+
+<p>Private key:</p>
+<div class="key">
+  {{ private_key }}
+</div>
+
+{% block javascript %}
+  <script src="{{ url_for('static', path='../static/js/creating-wallet.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

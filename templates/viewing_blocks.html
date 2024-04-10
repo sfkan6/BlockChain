@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/viewing_blocks.css') }}">
+{% endblock %}
+
+{% block title %}
+Chain
+{% endblock %}
+
+{% block container_header %}
+<div class="container_header">Blocks</div>
+{% endblock %}
+        
+{% block content %}
+  <div class="chain_length_label">Total of {{ chain_length }} blocks</div>
+  <table>
+    <colgroup>
+       <col span="1" style="width: 13%;">
+       <col span="1" style="width: 32%;">
+       <col span="1" style="width: 30%;">
+       <col span="1" style="width: 25%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Time</th>
+        <th>Hash</th>
+        <th>Previous Hash</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for block in blocks %}
+        <tr>
+          <td><a class="block_index" href="/{{block.header.index}}" target="_blank">{{block.header.index}}</a></td>
+          <td>{{block.header.timestamp}}</td>
+          <td>{{block.hash[:8] + "..." + block.hash[-8:]}}</td>
+          <td>{{block.header.prev_hash[:8] + "..." + block.header.prev_hash[-8:]}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
