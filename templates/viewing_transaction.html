@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='../static/css/viewing_transaction.css') }}">
+{% endblock %}
+
+{% block title %}
+Transaction
+{% endblock %}
+
+{% block container_header %}
+Transaction from Block №{{ transaction.block_index }}
+{% endblock %}
+        
+{% block content %}
+<div id="transaction">
+  <hr> 
+  <div class="block_field">
+    <div class="col_left">Index in block</div>
+    <div class="col_right">{{transaction_index}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Time</div>
+    <div class="col_right">{{transaction.timestamp}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Sender</div>
+    <div class="col_right">{{transaction.sender}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Recipient</div>
+    <div class="col_right">{{transaction.recipient}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Amount</div>
+    <div class="col_right">{{transaction.amount}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Message</div>
+    <div class="col_right">{{transaction.message}}</div>
+  </div>
+  <hr>
+  <div class="block_field">
+    <div class="col_left">Signature</div>
+    <div class="col_right">{{transaction.signature}}</div>
+  </div>
+  <hr>
+</div>
+{% endblock %}

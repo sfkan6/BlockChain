@@ -9,7 +9,7 @@ Chain
 {% endblock %}
 
 {% block container_header %}
-<div class="container_header">Blocks</div>
+Blocks
 {% endblock %}
         
 {% block content %}
@@ -27,6 +27,7 @@ Chain
         <th>Time</th>
         <th>Hash</th>
         <th>Previous Hash</th>
+        <th>Number of Transactions</th>
       </tr>
     </thead>
     <tbody>
@@ -34,8 +35,9 @@ Chain
         <tr>
           <td><a class="block_index" href="/{{block.header.index}}" target="_blank">{{block.header.index}}</a></td>
           <td>{{block.header.timestamp}}</td>
-          <td>{{block.hash[:8] + "..." + block.hash[-8:]}}</td>
-          <td>{{block.header.prev_hash[:8] + "..." + block.header.prev_hash[-8:]}}</td>
+          <td>{{block.hash[:6] + "..." + block.hash[-6:]}}</td>
+          <td>{{block.header.prev_hash[:6] + "..." + block.header.prev_hash[-6:]}}</td>
+          <td class="numberOfTransactions">{{block.transactions.length}}</td>
         </tr>
       {% endfor %}
     </tbody>

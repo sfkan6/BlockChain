@@ -18,7 +18,7 @@ class TransactionTableManager:
                 recipient TEXT,
                 amount INT,
                 message TEXT,
-                transaction_hash TEXT
+                signature TEXT
             )
         ''')
         self.conn.commit() 
@@ -28,29 +28,29 @@ class TransactionTableManager:
 
     def create(self, transaction):
         self.cur.execute(
-            "INSERT INTO Transactions (block_index, timestamp, sender, recipient, amount, message, transaction_hash) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (
+            "INSERT INTO Transactions (block_index, timestamp, sender, recipient, amount, message, signature) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (
                 transaction.block_index,
                 transaction.timestamp, 
                 transaction.sender, 
                 transaction.recipient,
                 transaction.amount,
                 transaction.message,
-                transaction.transaction_hash
+                transaction.signature
             )
         )
         # self.conn.commit() 
 
     def get_transactions_by_block_index(self, block_index):
         self.cur.execute("SELECT * FROM Transactions WHERE block_index='%s'" % block_index)
-        return self.get_transactions()
+        return self._get_transactions()
    
     def get_transactions_by_sender(self, sender):
         self.cur.execute("SELECT * FROM Transactions WHERE sender='%s'" % sender)
-        return self.get_transactions()
+        return self._get_transactions()
 
-    def get_transactions(self):
-        return Transactions([self.get_transaction_by_data(data) for data in self.cur.fetchall()])
+    def _get_transactions(self):
+        return Transactions([self.get_transaction_by_record(record) for record in self.cur.fetchall()])
 
-    def get_transaction_by_data(self, data):
-        return Transaction(*data[1:])
+    def get_transaction_by_record(self, record):
+        return Transaction.create_by_data(*record[1:])
 

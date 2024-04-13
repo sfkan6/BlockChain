@@ -1,6 +1,4 @@
-import hashlib
-import random
-import datetime as date
+import hashlib, random
 from .header import Header
 
 
@@ -10,9 +8,6 @@ class Block:
         self.header = header
         self.transactions = transactions
         self.hash = self.get_hash()
-
-    def __str__(self):
-        return "Block <number: %s, hash: %s>" % (self.header.index, self.hash)
 
     def get_hash(self):
         sha = hashlib.sha256()
@@ -37,7 +32,7 @@ class Block:
         if self.hash == block.header.prev_hash:
             return True
         return False
-   
+
     @classmethod
     def create_now(cls, index, prev_hash, nonce, transactions):
         header = Header.create_now(index, prev_hash, nonce)

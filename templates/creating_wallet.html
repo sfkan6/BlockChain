@@ -5,24 +5,24 @@
 {% endblock %}
 
 {% block title %}
-Block
+Create Wallet
 {% endblock %}
 
 {% block container_header %}
-<div class="container_header">
-  Creating Wallet
-</div>
+Creating Wallet
 {% endblock %}
         
 {% block content %}
-<p>Public key:</p>
-<div class="key">
-  {{ public_key }}
+<div>
+  <p>Public key:</p>
+  <div class="key">{{public_key}}</div>
+  <button class="copyButton">copy</button>
 </div>
 
-<p>Private key:</p>
-<div class="key">
-  {{ private_key }}
+<div>
+  <p>Private key:</p>
+  <div class="key">{{private_key}}</div>
+  <button class="copyButton">copy</button>
 </div>
 
 {% block javascript %}

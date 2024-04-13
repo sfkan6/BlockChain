@@ -4,8 +4,21 @@
   margin: 20px 0;
 }
 
+.block_index {
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 15px 22px;
+}
+
+.numberOfTransactions {
+  text-align: center;
+}
 
 table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
@@ -29,13 +42,6 @@ td{
   font-size: 22px;
   line-height: 1.5;
   padding: 1.5rem 20px;
-}
-
-
-.block_index {
-  background-color: #e7e7e7;
-  border-radius: 10px;
-  padding: 15px 22px;
 }
 
 

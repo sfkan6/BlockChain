@@ -10,7 +10,7 @@ class HeaderTableManager:
 
     def _create_table(self):
         self.cur.execute('''
-            CREATE TABLE IF NOT EXISTS Headers (
+            CREATE TABLE IF NOT EXISTS Headers(
                 id INT PRIMARY KEY,
                 timestamp TIMESTAMP,
                 prev_hash TEXT,
@@ -36,15 +36,20 @@ class HeaderTableManager:
 
     def get_all(self):
         self.cur.execute("SELECT * FROM Headers")
-        data = self.cur.fetchall()
-        return [self.get_header_by_record(header_data) for header_data in data]
+        return self._get_headers()
 
     def get_by_index(self, index):
         self.cur.execute("SELECT * FROM Headers WHERE id='%s'" % index)
+        return self._get_header()
+
+    def _get_headers(self):
+        return [self.get_header_by_record(record) for record in self.cur.fetchall()]
+
+    def _get_header(self):
         return self.get_header_by_record(self.cur.fetchone())
 
-    def get_header_by_record(self, header_data):
-        return Header(*header_data)
+    def get_header_by_record(self, record):
+        return Header(*record)
 
 
 

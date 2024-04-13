@@ -5,22 +5,20 @@
 {% endblock %}
 
 {% block title %}
-Block
+Block #{{ block.header.index }}
 {% endblock %}
 
 {% block container_header %}
-<div class="container_header">
-  Block is {{ block_index }}
-</div>
+Block #{{ block.header.index }}
 {% endblock %}
         
 {% block content %}
 
 <div class="menu">
-  <button id="InfoButton" class="activeMode">Info</button>
-  <button id="TransactionsButton">Transactions</button>
+  <button id="blockHeaderButton" class="activeMode">Info</button>
+  <button id="transactionsButton">Transactions</button>
 </div>
-<div id="header">
+<div id="blockHeader">
   <hr class="line">
   <div class="block_field">
     <div class="col_left">Index</div>
@@ -49,15 +47,10 @@ Block
   <hr class="line">
 </div>
 <div id="transactions" class="hidden">
-  <table>
-  <!-- <colgroup> -->
-  <!--    <col span="1" style="width: 13%;"> -->
-  <!--    <col span="1" style="width: 32%;"> -->
-  <!--    <col span="1" style="width: 30%;"> -->
-  <!--    <col span="1" style="width: 25%;"> -->
-  <!-- </colgroup> -->
+<table>
   <thead>
     <tr>
+      <th>Index</th>
       <th>Timestamp</th>
       <th>From</th>
       <th>To</th>
@@ -67,21 +60,26 @@ Block
     </tr>
   </thead>
   <tbody>
+    {% set transaction_index = 0 %}
     {% for transaction in block.transactions %}
-      <tr>
+    </a>
+      <tr class="transaction">
+        <td><a class="transaction_index" href="/{{block.header.index}}/{{transaction_index}}" target="_blank">{{transaction_index}}</a></td>
         <td>{{ transaction.timestamp}}</td>
-        <td>{{ transaction.sender[:8] + "..." + transaction.sender[-8:] }}</td>
-        <td>{{ transaction.recipient [:8] + "..." + transaction.recipient[-8:] }}</td>
+        <td>{{ transaction.sender[:4] + "..." + transaction.sender[-4:] }}</td>
+        <td>{{ transaction.recipient [:4] + "..." + transaction.recipient[-4:] }}</td>
         <td>{{ transaction.amount }}</td>
-        <td class="message">{{ transaction.message }}</td>
-        <td>{{ transaction.transaction_hash[:8] + "..." + transaction.transaction_hash[-8:] }}</td>
+        <td>{{ transaction.message }}</td>
+        <td>{{ transaction.signature [:4] + "..." + transaction.signature[-4:] }}</td>
       </tr>
+      {% set transaction_index = transaction_index + 1 %}
     {% endfor %}
   </tbody>
 </table>
 </div>
+
 {% block javascript %}
-  <script src="{{ url_for('static', path='../static/js/block-menu.js') }}"></script>
+  <script src="{{ url_for('static', path='../static/js/viewing_block.js') }}"></script>
 {% endblock %}
 
 {% endblock %}

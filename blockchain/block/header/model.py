@@ -8,13 +8,9 @@ class Header:
         self.prev_hash = prev_hash
         self.nonce = nonce
 
-    def get_dict(self):
-        return {'index': self.index, 'timestamp': self.timestamp, 'prev_hash': self.prev_hash, 'nonce': self.nonce}
-    
     def get_data_string(self):
         string_data = [self.index, self.timestamp, self.prev_hash, self.nonce]
         return ''.join(map(str, string_data))
-
 
     @classmethod
     def create_now(cls, index, prev_hash, nonce):

@@ -1,28 +1,26 @@
 
 
-const header = document.getElementById('header');
+const blockHeader = document.getElementById('blockHeader');
 const transactions = document.getElementById('transactions');
 
-ChangeTab = (e) => {
+changeTab = (e) => {
   const activeButton = document.getElementsByClassName('activeMode')[0];
   if (e.target.innerText != activeButton.innerHTML) {
     activeButton.classList.remove('activeMode');
     e.target.classList.add('activeMode');
 
     if (e.target.innerHTML == 'Info') {
-      header.classList.remove('hidden');
+      blockHeader.classList.remove('hidden');
       transactions.classList.add('hidden');
     } else {
       transactions.classList.remove('hidden');
-      header.classList.add('hidden');
+      blockHeader.classList.add('hidden');
     }
   }
 }
 
-const TransactionsButton = document.getElementById('TransactionsButton');
-const InfoButton = document.getElementById('InfoButton');
+const transactionsButton = document.getElementById('transactionsButton');
+const blockHeaderButton = document.getElementById('blockHeaderButton');
 
-InfoButton.addEventListener('click', ChangeTab);
-TransactionsButton.addEventListener('click', ChangeTab);
-
-
+blockHeaderButton.addEventListener('click', changeTab);
+transactionsButton.addEventListener('click', changeTab);
