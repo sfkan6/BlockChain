@@ -1,11 +1,11 @@
 
-sendStartCommand = () => {
-  fetch('/start', {method: 'get'});
+sendStartCommand = async () => {
+  await fetch('/start', {method: 'post'});
 }
 
-handleStartButton = (event) => {
+handleStartButton = async (event) => {
   event.preventDefault(); 
-  sendStartCommand()
+  await sendStartCommand()
   window.location.href = event.target.parentNode.href;
 }
 

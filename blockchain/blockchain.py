@@ -1,5 +1,5 @@
 from hashlib import sha256
-import asyncio, ecdsa
+import time, ecdsa, threading
 
 from .block import Block, Transactions
 
@@ -13,15 +13,17 @@ class Blockchain:
         self.MAX_BLOCKS = MAX_BLOCKS
         self.GENERATION_PERIOD = GENERATION_PERIOD
 
-    async def start(self):
+    def run(self):
         if not self.is_running:
             self.is_running = True
-            self.create_first_block()
-            await self._start_block_generation()
+            block_generation_flow = threading.Thread(target=self._start_block_generation)
+            block_generation_flow.start()
+            # block_generation_flow.join()
 
-    async def _start_block_generation(self):
+    def _start_block_generation(self):
+        self.create_first_block()
         for _ in range(self.MAX_BLOCKS):
-            await asyncio.sleep(self.GENERATION_PERIOD)
+            time.sleep(self.GENERATION_PERIOD)
             self.create_new_block()
 
     def create_first_block(self):

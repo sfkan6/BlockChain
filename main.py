@@ -7,9 +7,10 @@ from settings import app, templates, block_manager, blockchain
 from blockchain import Transaction
 
 
-@app.get("/start")
-async def start_generating_blocks():
-    await blockchain.start()
+
+@app.post("/start")
+def start_generating_blocks():
+    blockchain.run()
 
 
 @app.get("/chainlength")

@@ -7,7 +7,7 @@ from blockchain import BlockManager, Blockchain
 import sqlite3
 
 
-connect = sqlite3.connect('DataChain.db')
+connect = sqlite3.connect('DataChain.db', check_same_thread=False)
 block_manager = BlockManager(connect)
 blockchain = Blockchain(block_manager)
 
